@@ -61,7 +61,7 @@ export default function Page() {
   }, []);
 
   return (
-    <div className={`flex flex-col min-h-screen bg-black text-foreground bg-dotted-grid ${inter.className}`}>
+    <div className={`flex flex-col min-h-screen bgwhite-400 text-foreground bg-dotted-grid ${inter.className}`}>
       <style jsx global>{`
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(20px); }
@@ -165,11 +165,14 @@ export default function Page() {
       `}</style>
 
       {/* Navigation */}
-      <header className="flex items-center justify-between py-4 px-6 border-b border-neutral-800/50">
+      <header className="flex items-center justify-between py-4 px-6 border-b border-neutral-800/50 bg-yellow-400">
         <Link href="/" className={`text-2xl md:text-3xl font-medium ${playfair.className}`}>
           jayintern
         </Link>
         <nav className="flex items-center gap-4">
+          <Link href="/login">
+            <Button size="sm" variant="secondary">Login</Button>
+          </Link>
           <Button 
             size="sm"
             onClick={() => {
