@@ -167,7 +167,7 @@ export default function Page() {
       {/* Navigation */}
       <header className="flex items-center justify-between py-4 px-6 border-b border-neutral-800/50">
         <Link href="/" className={`text-2xl md:text-3xl font-medium ${playfair.className}`}>
-          VibeDev.ai
+          create.inc
         </Link>
         <nav className="flex items-center gap-4">
           <Button 
@@ -185,40 +185,100 @@ export default function Page() {
       </header>
 
       <main className="flex-grow">
-        {/* Hero Section */}
+        {/* Hero Section (Calendar + Laptop) */}
         <section className="py-20 px-6 relative">
           <div className="hero-glow" />
-          <div className="max-w-[1200px] mx-auto text-center relative z-10">
-            {/* Logo Placeholder */}
-            <div className="mb-4">
-              <img 
-                src="/images/idevibelogo.png" 
-                alt="VibeDev Logo" 
-                className="w-36 h-36 mx-auto object-contain"
-              />
+          <div className="max-w-[1200px] mx-auto relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+              {/* Calendar grid */}
+              <div className="text-white">
+                <div className={`text-sm uppercase tracking-widest text-neutral-400 mb-6 ${inter.className}`}>API Playground</div>
+                <div className="grid grid-cols-3 gap-6">
+                  {[
+                    'January','February','March','April','May','June','July','August','September','October','November','December'
+                  ].map((month) => (
+                    <div key={month} className="bg-neutral-900/60 border border-neutral-800 rounded-lg p-4">
+                      <div className={`text-xs text-neutral-300 mb-3 ${playfair.className}`}>{month}</div>
+                      {/* simple 7x5 calendar dots */}
+                      <div className="grid grid-cols-7 gap-1">
+                        {Array.from({ length: 35 }).map((_, i) => (
+                          <div key={i} className="h-2.5 w-2.5 rounded-sm bg-neutral-700/70" />
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Laptop mockup */}
+              <div className="w-full">
+                <div className="mx-auto w-full max-w-[520px]">
+                  <div className="relative rounded-xl bg-neutral-300/20 border border-neutral-600 shadow-2xl">
+                    {/* lid/bezel */}
+                    <div className="rounded-t-xl bg-neutral-200/10 p-3 border-b border-neutral-700">
+                      <div className="mx-auto h-1.5 w-16 rounded-full bg-neutral-700" />
+                    </div>
+                    {/* screen */}
+                    <div className="bg-black p-10">
+                      <h1 className={`text-white text-4xl leading-tight ${playfair.className}`}>
+                        create.inc
+                        <br />
+                        Learn and use the coolest APIs
+                        <br />
+                        in Cursor to build amazing apps —
+                        <br />
+                        no coding required.
+                      </h1>
+                    </div>
+                    {/* keyboard base */}
+                    <div className="rounded-b-xl bg-neutral-900 p-4" />
+                  </div>
+                  {/* deck */}
+                  <div className="mx-auto h-2 w-[90%] rounded-b-xl bg-neutral-700 mt-1" />
+                </div>
+
+                <div className="mt-8">
+                  <Button 
+                    size="lg" 
+                    className="rounded-full"
+                    onClick={() => {
+                      document.getElementById('early-access-form')?.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'center'
+                      });
+                    }}
+                  >
+                    Explore APIs
+                  </Button>
+                </div>
+              </div>
             </div>
-            <div className="inline-flex items-center px-6 py-2 text-base font-medium text-purple-400 mb-8 glimmer-pill fade-in bg-purple-500/10 border border-purple-500/20 shadow-[0_0_15px_rgba(239,68,68,0.1)]">
-              <span className={playfair.className}>A Software Composer app</span>
+          </div>
+        </section>
+
+        {/* API Categories Section */}
+        <section className="py-20 px-6 border-t border-neutral-800">
+          <div className="max-w-[1200px] mx-auto">
+            <div className="text-center mb-12">
+              <h2 className={`text-3xl md:text-4xl font-medium mb-3 ${playfair.className}`}>Explore Categories</h2>
+              <p className="text-neutral-400 text-lg">Text, Images, Video, RAG, Tools, Avatars, and Training models.</p>
             </div>
-            <h1 className={`text-4xl md:text-5xl font-medium mb-6 tracking-tight fade-in delay-1 ${playfair.className}`}>
-              The Easiest Way To<br />Vibe Code With Cursor
-            </h1>
-            <p className="text-lg text-neutral-400 mb-8 fade-in delay-2">
-              VibeDev is your IDE for Vibe Coding
-            </p>
-            <div className="fade-in delay-3">
-              <Button 
-                size="lg" 
-                className="rounded-full"
-                onClick={() => {
-                  document.getElementById('early-access-form')?.scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'center'
-                  });
-                }}
-              >
-                Get Early Access
-              </Button>
+            <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {[
+                { title: 'AI Text', desc: 'Chat, summarize, translate, structure data.' },
+                { title: 'AI Image', desc: 'Generate, edit, upscale, background removal.' },
+                { title: 'AI Video', desc: 'Create clips, captions, avatars, effects.' },
+                { title: 'RAG Tools', desc: 'Search, chunk, embed, and answer from your data.' },
+                { title: 'Developer Tools', desc: 'Payments, auth, storage, emails, webhooks.' },
+                { title: 'AI Avatars', desc: 'Voice + face synthesis for interactive agents.' },
+                { title: 'Train Models', desc: 'Fine-tune text/image/voice for your brand.' },
+                { title: 'Automation', desc: 'Orchestrate workflows and schedule tasks.' },
+              ].map((c) => (
+                <div key={c.title} className="bg-neutral-900 p-6 rounded-xl border border-neutral-800/80 hover:border-green-500/20 transition-colors">
+                  <h3 className={`text-lg font-medium mb-2 ${playfair.className}`}>{c.title}</h3>
+                  <p className="text-neutral-400 text-sm leading-relaxed">{c.desc}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -229,90 +289,54 @@ export default function Page() {
             <div className="glimmer-card">
               <div className="bg-neutral-900">
                 <div className="flex flex-col md:flex-row h-auto md:h-[600px]">
-                  {/* Input Section */}
-                  <div className="w-full md:w-1/2 md:border-r border-neutral-800 p-6 flex flex-col">
-                    <div className="mb-6">
-                      <label className="block text-sm font-medium text-neutral-400 mb-2">What should Cursor do?</label>
-                      <div className="relative">
-                        <input
-                          type="text"
-                          placeholder="Describe what you want to build..."
-                          className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-lg text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500/30"
-                        />
-                        <button className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-green-500/10 rounded-lg text-green-400 hover:bg-green-500/20 transition-colors">
-                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M22 2L11 13"/>
-                            <path d="M22 2L15 22L11 13L2 9L22 2Z"/>
-                          </svg>
-                        </button>
+                  {/* Left: Popular APIs */}
+                  <div className="w-full md:w-1/2 md:border-r border-neutral-800 p-6 grid grid-cols-1 gap-4">
+                    {[ 
+                      { name: 'OpenAI', tags: ['Text','Embeddings','Assistants'] },
+                      { name: 'Stability', tags: ['Images','Generation'] },
+                      { name: 'Replicate', tags: ['Models','Inference'] },
+                      { name: 'Pinecone', tags: ['Vector DB','RAG'] },
+                      { name: 'Clerk', tags: ['Auth','Users'] },
+                      { name: 'Stripe', tags: ['Payments'] },
+                    ].map((api) => (
+                      <div key={api.name} className="flex items-center justify-between p-4 bg-neutral-800/50 rounded-lg">
+                        <div>
+                          <div className={`text-base font-medium ${playfair.className}`}>{api.name}</div>
+                          <div className="mt-2 flex flex-wrap gap-2">
+                            {api.tags.map((t) => (
+                              <span key={t} className="text-xs px-2 py-1 rounded-full bg-neutral-700 text-neutral-300">{t}</span>
+                            ))}
+                          </div>
+                        </div>
+                        <button className="text-sm px-3 py-1 rounded-md bg-green-500/10 text-green-400 hover:bg-green-500/20">Docs</button>
                       </div>
-                    </div>
-                    
-                    <div>
-                      <h3 className="text-sm font-medium text-neutral-400 mb-4">Start from</h3>
-                      <div className="grid grid-cols-1 gap-3">
-                        {[...Array(2)].map((_, i) => (
-                          <button
-                            key={i}
-                            className="flex items-center gap-3 p-4 bg-neutral-800/50 rounded-lg hover:bg-neutral-800 transition-colors text-left group"
-                          >
-                            <div className="w-8 h-8 rounded-lg bg-green-500/10 text-green-400 flex items-center justify-center group-hover:bg-green-500/20 transition-colors">
-                              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-                              </svg>
-                            </div>
-                            <span className="text-sm font-medium">Template {i + 1}</span>
-                          </button>
-                        ))}
-                      </div>
-                    </div>
+                    ))}
                   </div>
 
-                  {/* Cursor Composer Section - Hidden on mobile */}
+                  {/* Right: Cursor Flow - Hidden on mobile */}
                   <div className="hidden md:flex md:w-1/2 md:flex-col">
                     <div className="p-4 border-b border-neutral-800">
-                      <h2 className="text-lg font-medium">Cursor Composer</h2>
+                      <h2 className="text-lg font-medium">Works with Cursor</h2>
                     </div>
                     <div className="flex-1 p-4 overflow-y-auto space-y-4">
-                      {/* First Message */}
-                      <div className="flex justify-end">
-                        <div className="max-w-[85%] p-4 bg-neutral-800 rounded-lg">
-                          <p className="text-sm text-neutral-300 text-right">
-                            Sure, I can make those changes for you.
-                          </p>
-                        </div>
+                      {/* Step 1 */}
+                      <div className="p-4 bg-neutral-800 rounded-lg">
+                        <p className="text-sm text-neutral-300"><span className="text-green-400 font-medium">1.</span> Pick an API category (e.g. AI Text) and copy the snippet.</p>
                       </div>
-
-                      {/* Status Updates */}
-                      <div className="flex flex-col gap-2">
-                        <div className="self-end max-w-[85%] p-3 bg-neutral-800 rounded-lg">
-                          <p className="text-sm font-medium text-green-400 text-right">File generated</p>
-                        </div>
-                        <div className="self-end max-w-[85%] p-3 bg-neutral-800 rounded-lg">
-                          <p className="text-sm font-medium text-green-400 text-right">File generated</p>
-                        </div>
-                        <div className="self-end max-w-[85%] p-3 bg-neutral-800 rounded-lg">
-                          <p className="text-sm font-medium text-green-400 text-right">File generated</p>
-                        </div>
-                        <div className="self-end max-w-[85%] p-3 bg-neutral-800 rounded-lg">
-                          <p className="text-sm font-medium text-green-400 text-right">File generated</p>
-                        </div>
+                      {/* Step 2 */}
+                      <div className="p-4 bg-neutral-800 rounded-lg">
+                        <p className="text-sm text-neutral-300"><span className="text-green-400 font-medium">2.</span> Paste into Cursor, run the command, and configure your keys.</p>
                       </div>
-
-                      {/* Completion Message */}
-                      <div className="flex justify-end">
-                        <div className="max-w-[85%] p-4 bg-neutral-800 rounded-lg">
-                          <p className="text-sm text-neutral-300 text-right">
-                            I&apos;ve successfully created your app
-                          </p>
-                        </div>
+                      {/* Step 3 */}
+                      <div className="p-4 bg-neutral-800 rounded-lg">
+                        <p className="text-sm text-neutral-300"><span className="text-green-400 font-medium">3.</span> Ship your feature — text, images, video, RAG, avatars, or your own model.</p>
                       </div>
                     </div>
                     <div className="p-4 border-t border-neutral-800">
                       <div className="relative">
                         <input
                           type="text"
-                          placeholder="Type your message..."
+                          placeholder="Ask: how do I add image generation?"
                           className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-lg text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500/30"
                         />
                         <button className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-green-500/10 rounded-lg text-green-400 hover:bg-green-500/20 transition-colors">
@@ -384,8 +408,8 @@ export default function Page() {
         <section id="early-access-form" className="py-20 px-6 border-t border-neutral-800 bg-neutral-900/80">
           <div className="max-w-[1200px] mx-auto text-center">
             <div className="scroll-animation">
-              <h2 className={`text-3xl md:text-4xl font-medium mb-4 ${playfair.className}`}>Get Early Access</h2>
-              <p className="text-neutral-400 mb-12">Be the first to experience the future of coding.</p>
+              <h2 className={`text-3xl md:text-4xl font-medium mb-4 ${playfair.className}`}>Join create.inc</h2>
+              <p className="text-neutral-400 mb-12">Get curated API guides, ready-to-paste snippets for Cursor, and updates on AI text, images, video, RAG, tools, avatars, and training your own model.</p>
             </div>
             <div className="max-w-[400px] mx-auto scroll-animation">
               <iframe 
