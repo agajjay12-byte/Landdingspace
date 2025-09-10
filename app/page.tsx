@@ -167,7 +167,7 @@ export default function Page() {
       {/* Navigation */}
       <header className="flex items-center justify-between py-4 px-6 border-b border-neutral-800/50">
         <Link href="/" className={`text-2xl md:text-3xl font-medium ${playfair.className}`}>
-          create.inc
+          jayintern
         </Link>
         <nav className="flex items-center gap-4">
           <Button 
